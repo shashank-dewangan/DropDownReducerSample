@@ -11,10 +11,14 @@ const initialState = {
 };
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "LOAD_GROUP":
-      return { ...state, optionGroup: [{ ...options }, { ...options }] };
-    case "LOAD_DROPDOWN":
-      return { ...state, options: options };
+    case "ADDITEM":
+      let newArray = [...state.optionGroup];
+      newArray.push(options);
+      const updatedState = {
+        ...state,
+        optionGroup: newArray
+      };
+      return updatedState;
     default:
       return initialState;
   }

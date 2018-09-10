@@ -8,24 +8,27 @@ import "./styles.css";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 
-const App = ({ option }) => {
+const App = ({ optionGroup, OnAddItem }) => {
   return (
     <div className="App">
-      <Dropdown
-        options={option.options}
-        onChange={() => {}}
-        value={option.defaultOption}
-        placeholder="Select an option"
-      />
+      <GroupDropDown optionGroup={optionGroup} />
+      <br />
+      <button onClick={OnAddItem}>Add Item</button>
     </div>
   );
 };
 const store = createStore(reducer);
 const rootElement = document.getElementById("root");
 const render = () =>
-  ReactDOM.render(<App option={store.getState().options} />, rootElement);
+  ReactDOM.render(
+    <App
+      optionGroup={store.getState().optionGroup}
+      OnAddItem={() => {
+        store.dispatch({ type: "ADDITEM" });
+      }}
+    />,
+    rootElement
+  );
 store.subscribe(render);
-console.log("state", store.getState());
-store.dispatch({ type: "LOAD_DROPDOWN" });
-console.log("state", store.getState());
+
 render();
