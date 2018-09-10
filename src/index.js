@@ -6,10 +6,14 @@ import { createStore } from "redux";
 import "./styles.css";
 import "react-dropdown/style.css";
 
-const App = ({ optionGroup, OnAddItem, clearCollection }) => {
+const App = ({ optionGroup, OnAddItem, clearCollection, optionSelected }) => {
+  console.log("optionGroup", optionGroup);
   return (
     <div className="App">
-      <GroupDropDown optionGroup={optionGroup} />
+      <GroupDropDown
+        optionGroup={optionGroup}
+        optionSelected={optionSelected}
+      />
       <br />
       <button onClick={OnAddItem}>Add Item</button>
       <button onClick={clearCollection}>Clear</button>
@@ -26,6 +30,7 @@ const render = () =>
         store.dispatch({ type: "ADDITEM" });
       }}
       clearCollection={() => store.dispatch({ type: "CLEARCOLLECTION" })}
+      optionSelected={e => store.dispatch({ type: "SELECTEDITEM", value: e })}
     />,
     rootElement
   );
