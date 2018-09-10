@@ -19,6 +19,8 @@ export const reducer = (state = initialState, action) => {
         optionGroup: newArray
       };
       return updatedState;
+    case "CLEARCOLLECTION":
+      return { ...state, optionGroup: [] };
     default:
       return initialState;
   }

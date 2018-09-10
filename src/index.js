@@ -8,12 +8,13 @@ import "./styles.css";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 
-const App = ({ optionGroup, OnAddItem }) => {
+const App = ({ optionGroup, OnAddItem, clearCollection }) => {
   return (
     <div className="App">
       <GroupDropDown optionGroup={optionGroup} />
       <br />
       <button onClick={OnAddItem}>Add Item</button>
+      <button onClick={clearCollection}>Clear</button>
     </div>
   );
 };
@@ -26,6 +27,7 @@ const render = () =>
       OnAddItem={() => {
         store.dispatch({ type: "ADDITEM" });
       }}
+      clearCollection={() => store.dispatch({ type: "CLEARCOLLECTION" })}
     />,
     rootElement
   );
