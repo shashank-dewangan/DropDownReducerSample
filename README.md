@@ -1,2 +1,0 @@
-# DropDownReducerSample
-Created with CodeSandbox
